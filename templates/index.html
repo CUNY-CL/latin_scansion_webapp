@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta http-equivalent="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
     <title>Latin scansion engine</title>
 </head>
@@ -30,20 +31,13 @@
                     <input name="show_var_pron" id="show_var_pron" value="true" type="checkbox" checked>
                     <label for="show_var_pron">Show pronunciation?</label>
                 </li>
-                <!-- 
-                    TODO: syllables should nest under feet, so that
-                    show_syllables requires show_feet. I do not yet know how
-                    to fix this. -->
-                <!-- 
-                    TODO: these are no-op. The results.html template ignores them. 
-                -->
                 <li>
                     <input name="show_feet" id="show_feet" value="true" type="checkbox" checked>
-                    <label for="option">&#128679; Show feet? &#128679;</label>
+                    <label for="option">Show feet?</label>
                 </li>
                 <li>
                     <input name="show_syllables" id="show_syllables" value="true" type="checkbox" checked>
-                    <label for="show_syllables">&#128679; Show syllables? &#128679;</label>
+                    <label for="show_syllables">Show syllables?</label>
                 </li> 
             </ul>
         </p>

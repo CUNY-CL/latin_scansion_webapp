@@ -69,10 +69,12 @@ def index() -> str:
 def result() -> str:
     form = ScansionForm(flask.request.form)
     if form.validate():
-        lines = form.string.data.splitlines()
+        lines = form.string.data.strip().splitlines()
         return flask.render_template(
             "result.html",
             document=scan_document(lines, "<webapp input>"),
+            # TODO: Is there a way to make these auto-convert to bool
+            # in the form specification?
             show_text=bool(form.show_text.data),
             show_norm=bool(form.show_norm.data),
             show_raw_pron=bool(form.show_raw_pron.data),

@@ -1,38 +1,80 @@
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
-<title>Latin scansion engine result</title>
+    <meta http-equivalent="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
+    <title>Latin scansion engine result</title>
 </head>
 
+<!-- 54 = 3 subsyllabic positions times up to 3 syllables per foot times 6 feet per verse -->
 <body>
 <table class="document">
-    <tr class="document">
     {% for verse in document.verse %}
-        <table class="verse">
-            <tr>
-                {% if show_text %}
-                    <td class="text"><b>{{ verse.text }}</b></td>
-                {% endif %}
-                {% if show_norm %}
-                    <td class="norm"><tt>{{ verse.norm }}</tt></td>
-                {% endif %}
-                {% if verse.defective %}
-                    <td class="defective">(defective)</td>
-                {% else %}
-                    {% if show_raw_pron %}
-                        <td class="raw_pron">[{{ verse.raw_pron }}]</td>
-                    {% endif %}
-                    {% if show_var_pron %}
-                        <td class="var_pron">[{{ verse.var_pron }}]</td>
-                    {% endif %}
-                {% endif %}
-            <tr>
-        </table>
-    </tr>
+        {% if verse.defective %}
+            <!-- TODO: make this a pale red background to symbolize defectivity. -->
+            {% if show_text %}
+                <tr><td colspan=54><b>{{ verse.text }}</b></td></tr>
+            {% endif %}
+            {% if show_norm %}
+                <tr><td colspan=54><tt>{{ verse.norm }}</tt></td></tr>
+            {% endif %}
+            {% if show_raw_pron %}
+                <tr><td colspan=54>[{{ verse.raw_pron }}]</td></tr>
+            {% endif %}
+            <!-- TODO: use color instead of this. -->
+            <tr><td colspan=54>(defective)</td></tr>
+        {% else %}
+            <!-- TODO: make this a pale blue or green background to symbolize success. -->
+            {% if show_text %}
+                <tr><td colspan=54><b>{{ verse.text }}</b></td></tr>
+            {% endif %}
+            {% if show_norm %}
+                <tr><td colspan=54><tt>{{ verse.norm }}</tt></td></tr>
+            {% endif %}
+            {% if show_raw_pron %}
+                <tr><td colspan=54>[{{ verse.raw_pron }}]</td></tr>
+            {% endif %}
+            {% if show_var_pron %}
+                <tr><td colspan=54>|{{ verse.var_pron }}|</td></tr>
+            {% endif %}
+            {% if show_feet %}
+                <tr>
+                    {% for foot in verse.foot %}
+                        <td colspan=9>{{ "%c" % foot.type }}</td>
+                    {% endfor %}
+                </tr>
+            {% endif %}
+            {% if show_syllables %}
+                <tr>
+                    {% for foot in verse.foot %}
+                        {% for syllable in foot.syllable %}
+                            <td colspan=3>{{ "%c" % syllable.weight }}</td>
+                        {% endfor %}
+                        {% if foot.syllable|length == 2 %}
+                            <td colspan=3>&nbsp;</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for foot in verse.foot %}
+                        {% for syllable in foot.syllable %}
+                            <td>{{ syllable.onset }}</td>
+                            <td>{{ syllable.nucleus }}</td>
+                            <td>{{ syllable.coda }}</td>
+                        {% endfor %}
+                        <!-- Since this logic is repeated from above perhaps this should be a template macro. -->
+                        {% if foot.syllable|length == 2 %}
+                            <td colspan=3>&nbsp;</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endif %}
+        {% endif %}
+        <tr class="spacer"><td class="spacer">&nbsp;</td></tr>
     {% endfor %}
+    </tr>
 </table>
-<p>{{ document.verse|length }} lines scanned.</p>
+<p>({{ document.verse|length }} lines scanned.)</p>
 </body>
 
 </html>
