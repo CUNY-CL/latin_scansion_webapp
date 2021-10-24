@@ -1,0 +1,38 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
+<title>Latin scansion engine result</title>
+</head>
+
+<body>
+<table class="document">
+    <tr class="document">
+    {% for verse in document.verse %}
+        <table class="verse">
+            <tr>
+                {% if show_text %}
+                    <td class="text"><b>{{ verse.text }}</b></td>
+                {% endif %}
+                {% if show_norm %}
+                    <td class="norm"><tt>{{ verse.norm }}</tt></td>
+                {% endif %}
+                {% if verse.defective %}
+                    <td class="defective">(defective)</td>
+                {% else %}
+                    {% if show_raw_pron %}
+                        <td class="raw_pron">[{{ verse.raw_pron }}]</td>
+                    {% endif %}
+                    {% if show_var_pron %}
+                        <td class="var_pron">[{{ verse.var_pron }}]</td>
+                    {% endif %}
+                {% endif %}
+            <tr>
+        </table>
+    </tr>
+    {% endfor %}
+</table>
+<p>{{ document.verse|length }} lines scanned.</p>
+</body>
+
+</html>

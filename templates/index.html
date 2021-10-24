@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
+    <title>Latin scansion engine</title>
+</head>
+
+<body>
+    <h1>Latin scansion engine</h1>
+    <form action="/result.html" method="post">
+        <!-- form itself -->
+        <p>
+            <label for="string" />
+            <textarea name="string" rows={{ config.rows }} cols={{ config.cols }}>{{ config.example_text }}</textarea>
+        </p>
+        <p><ul>
+                <li>
+                    <input name="show_text" id="show_text" value="true" type="checkbox" checked>
+                    <label for="show_text">Show original text?</label>
+                </li>
+                <li>
+                    <input name="show_norm" id="show_norm" value="true" type="checkbox">
+                    <label for="show_norm">Show normalized text?</label>
+                </li>
+                <li>
+                    <input name="show_raw_pron" id="show_raw_pron" value="true" type="checkbox">
+                    <label for="show_raw_pron">Show raw pronunciation?</label>
+                </li>
+                <li>
+                    <input name="show_var_pron" id="show_var_pron" value="true" type="checkbox" checked>
+                    <label for="show_var_pron">Show pronunciation?</label>
+                </li>
+                <!-- 
+                    TODO: syllables should nest under feet, so that
+                    show_syllables requires show_feet. I do not yet know how
+                    to fix this. -->
+                <!-- 
+                    TODO: these are no-op. The results.html template ignores them. 
+                -->
+                <li>
+                    <input name="show_feet" id="show_feet" value="true" type="checkbox" checked>
+                    <label for="option">&#128679; Show feet? &#128679;</label>
+                </li>
+                <li>
+                    <input name="show_syllables" id="show_syllables" value="true" type="checkbox" checked>
+                    <label for="show_syllables">&#128679; Show syllables? &#128679;</label>
+                </li> 
+            </ul>
+        </p>
+        <p><input type="submit" value="Scan"/></p>
+    </form>
+    <p><a href={{ url_for('static', filename='input.html') }}>Input format</a> &bull; <a href={{ url_for('static', filename='about.html') }}>About</a></p>
+</body>
+
+</html>
