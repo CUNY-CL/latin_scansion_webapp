@@ -15,7 +15,11 @@ Install requirements:
 
 Then, copy the grammar FAR `all.far` into the working directory.
 
-## Launch for prod
+## Launch for development
+
+    FLASK_ENV=development flask run
+
+## Launch for production
 
     gunicorn --workers 1 --log-file - app:app
 
