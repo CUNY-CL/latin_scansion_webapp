@@ -17,7 +17,7 @@ Then, copy the grammar FAR `all.far` into the working directory.
 
 ## Launch for prod
 
-    gunicorn --workesr 1 --log-file - app:app
+    gunicorn --workers 1 --log-file - app:app
 
 ## Authors
 
