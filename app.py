@@ -1,6 +1,7 @@
 """Latin scansion app."""
 
 import functools
+import unicodedata
 
 import flask
 import wtforms  # type: ignore
@@ -61,7 +62,7 @@ with pynini.Far(app.config["far_path"], "r") as far:
 
 @app.route("/")
 def index() -> str:
-    form = ScansionForm()
+    form = ScansionForm()  # noqa: F841
     return flask.render_template("index.html")
 
 
@@ -69,7 +70,9 @@ def index() -> str:
 def result() -> str:
     form = ScansionForm(flask.request.form)
     if form.validate():
-        lines = form.string.data.strip().splitlines()
+        lines = unicodedata.normalize(
+            "NFC", form.string.data.strip()
+        ).splitlines()
         return flask.render_template(
             "result.html",
             document=scan_document(lines, "<webapp input>"),
