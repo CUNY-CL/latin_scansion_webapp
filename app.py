@@ -7,6 +7,8 @@ import flask
 import wtforms  # type: ignore
 import yaml
 
+from flask import json, render_template,request
+
 import latin_scansion
 import pynini
 
@@ -63,7 +65,7 @@ with pynini.Far(app.config["far_path"], "r") as far:
 @app.route("/")
 def index() -> str:
     form = ScansionForm()  # noqa: F841
-    return flask.render_template("index.html")
+    return flask.render_template("base.html")
 
 
 @app.route("/result.html", methods=["POST"])

@@ -1,13 +1,7 @@
-<html>
+{% extends "base.html" %}
 
-<head>
-    <meta http-equivalent="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
-    <title>Latin scansion engine result</title>
-</head>
-
+{%block page1 %}
 <!-- 54 = 3 subsyllabic positions times up to 3 syllables per foot times 6 feet per verse -->
-<body>
 <table class="document">
     {% for verse in document.verse %}
         {% if verse.defective %}
@@ -75,6 +69,5 @@
     </tr>
 </table>
 <p>({{ document.verse|length }} lines scanned.)</p>
-</body>
-
-</html>
+<p><a href = "/">Return to home</a></p>
+{% endblock %}

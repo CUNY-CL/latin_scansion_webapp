@@ -1,52 +1,24 @@
-{% extends "base.html" %}
+<html>
 
-{% block page1 %}
-<div class="page" id="tab1" style="display:block;">
-    <form id = "form" action="/result.html" method="post">
-      <div class="form-container">
-        <div class="textarea-group">
-            <label for="string"/>
-          <textarea placeholder="Type or paste" name="string" id="fancy-textarea">{{ config.example_text }}</textarea>
-        </div>
-
-        <fieldset class="checkbox-group">
-          <legend>Display Options</legend>
-          <label for = "show_text" class="container">Original text
-            <input name="show_text" id="show_text" value="true" type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label>
-          <label for = "show_norm" class="container">Normalized text
-            <input name="show_norm" id="show_norm" value="true" type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label>
-          <label for = "show_raw_pron" class="container">Raw pronunciation
-            <input name="show_raw_pron" id="show_raw_pron" value="true" type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label>
-          <label for = "show_var_pron" class="container">Pronunciation
-            <input name="show_var_pron" id="show_var_pron" value="true" type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label>
-          <label for = "show_feet" class="container">Feet
-            <input name="show_feet" id="show_feet" value="true" type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label>
-          <label for = "show_syllables" class="container">Syllables
-            <input name="show_syllables" id="show_syllables" value="true" type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label>
-        </fieldset>
-
-      </div>
-      <div class="spacer"></div>
-      <button type="submit">Scan Lines</button>
-    </form>
-  </div>
-{% endblock %}
-
-{% block page2 %}
+<head>
+    <meta http-equivalent="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <title>Latin scansion engine</title>
+</head>
+<body>
+    <h1><a href= "/" style="text-decoration: none; color: inherit;">Latin Scansion Engine</a></h1>
+    <div class="tabbed-menu">
+        <ul class="tabs">
+            <li id="tab1" class="selected">Scan</li>
+        <li id="tab2">How to input</li>
+        <li id="tab3">About</li>
+          </ul>
+      <div class="contentWrapper">
+        <div class="content">
+          <div class="page" id="tab1" style="display:block;">{% block page1 %}{% endblock %}</div>
 <div class="page" id="tab2" style="display:none;">
-    <p>The input to the web app is assumed to follow the style used by Clyde Pharr's well-known <a href="https://www.worldcat.org/title/virgils-aeneid-books-i-vi/oclc/863589166" style="color: teal"><i>Aeneid</i> reader</a>. To wit:</p>
+    <p>The input to the web app is assumed to follow the style used by Clyde Pharr's well-known <a href="https://www.worldcat.org/title/virgils-aeneid-books-i-vi/oclc/863589166" ><i>Aeneid</i> reader</a>. To wit:</p>
     <ul>
 <li>Capital letters, periods, question marks, commas, parentheses, and square brackets are permitted but ignored.</li>
 <li>The glides must be indicated by <i>v</i> and <i>j</i>, respectively. (Note that Pharr does not use a geminate for intervocalic <i>j</i>.)
@@ -55,9 +27,7 @@
 <p> It is our intention to eventually support other input formats (i.e., without explicit glides, without macrons) if possible.</p>
 
   </div>
-  {% endblock %}
 
-{% block page3 %}
 <div class="page" id="tab3" style="display:none;">
     <p>This web app uses a series of grammars implemented as weighted <a href="https://en.wikipedia.org/wiki/Finite-state_machine">finite-state automata</a> to recover the scansion, and implied phonetic transcription, of Latin <a href="https://en.wikipedia.org/wiki/Dactylic_hexameter">dactylic hexameter</a> poetry. <a href="https://en.wikipedia.org/wiki/Virgil">Virgil</a>'s <i><a href="https://en.wikipedia.org/wiki/Aeneid">Aeneid</a></i> was used to develop this tool, though it should work for other Latin authors and poems that use this meter.</p>
 <p>The grammars themselves were created using <a href="https://thrax.opengrm.org/">Thrax</a>, a domain-specific language (and associated compiler) for developing finite-state grammars. Our own <tt><a href="https://github.com/CUNY-CL/latin_scansion">latin_scansion</a></tt> library
@@ -74,6 +44,12 @@ acts as a backend. It applies the Thrax grammars to the input using <a href=http
 </ol>
 <p>To obtain the final scan and narrow phonetic transcription, these grammars are applied in the order they are listed in above, at each step creating a weighted lattice of possible analyses. The best analysis consistent with the rules of Latin meter are obtained by computing the shortest path of the final lattice, and intermediate analyses (of feet, weight, syllable structure, etc.) are recovered by further composition with that shortest path.</p>
 <p>In the case these later composition steps fail, the line is coded as defective and intermediate analyses depending on the constraints of hexameter are not available. In practice defective lines may represent a deliberate poetic effect used at the ends of stanzas ("books"), rare effects of poetic license not currently modeled&mdash;systole, diastole, and hypermeter&mdash;or simply incomplete lines.</p>
-<p>This app was developed by <a href="mailto: jillianchang15@gmail.com"   target="_blank">Jillian Chang</a> and <a href="kgorman@gc.cuny.edu">Kyle Gorman</a> of the <a href="https://www.gc.cuny.edu/page-elements/academics-research-centers-initiatives/doctoral-programs/linguistics">Program in Linguistics</a> at the <a href="https://www.gc.cuny.edu/Home">Graduate Center, City University of New York</a>.</p>
+<p>This app was developed by <a href="mailto: jillianchang15@gmail.com"   target="_blank">Jillian Chang</a> and <a href="mailto: kgorman@gc.cuny.edu">Kyle Gorman</a> of the <a href="https://www.gc.cuny.edu/page-elements/academics-research-centers-initiatives/doctoral-programs/linguistics">Program in Linguistics</a> at the <a href="https://www.gc.cuny.edu/Home">Graduate Center, City University of New York</a>.</p>
   </div>
-{% endblock %}
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js')}}"></script>
+    {% block jsrefresh %} {% endblock %}
+  </body>
+</html>
