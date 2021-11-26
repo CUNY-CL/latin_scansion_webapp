@@ -65,7 +65,7 @@ with pynini.Far(app.config["far_path"], "r") as far:
 @app.route("/")
 def index() -> str:
     form = ScansionForm()  # noqa: F841
-    return flask.render_template("base.html")
+    return flask.render_template("index.html")
 
 
 @app.route("/result.html", methods=["POST"])
