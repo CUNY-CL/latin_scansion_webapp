@@ -12,18 +12,3 @@ $(document).ready(function() {
       });
     });
   });
-/* 
-  $(document).on('submit','#form',function(e) 
-  {
-        e.preventDefault();
-        $.ajax({
-          type: "POST",
-          url: "/result.html",
-          dataType: 'html',
-          success: function (data) {
-            console.log('success');
-            $('#page.tab1').html(data);
-          }
-        });
-      });
- */

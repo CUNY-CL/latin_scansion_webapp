@@ -1,36 +1,36 @@
-{% extends "/base.html" %}
+{% extends "base.html" %}
 
 {% block page1 %}
     <form id = "form" action="/result.html" method="post">
       <div class="form-container">
         <div class="textarea-group">
             <label for="string"/>
-          <textarea placeholder="Type or paste" name="string" id="fancy-textarea">{{ config.example_text }}</textarea>
+          <textarea placeholder="Type or paste" name="string">{{ config.example_text }}</textarea>
         </div>
 
         <fieldset class="checkbox-group">
           <legend>Display Options</legend>
-          <label for = "show_text" class="container">Original text
+          <label for="show_text" class="checkbox-item">Original text
             <input name="show_text" id="show_text" value="true" type="checkbox" checked="checked">
             <span class="checkmark"></span>
           </label>
-          <label for = "show_norm" class="container">Normalized text
+          <label for="show_norm" class="checkbox-item">Normalized text
             <input name="show_norm" id="show_norm" value="true" type="checkbox" checked="checked">
             <span class="checkmark"></span>
           </label>
-          <label for = "show_raw_pron" class="container">Raw pronunciation
+          <label for="show_raw_pron" class="checkbox-item">Raw pronunciation
             <input name="show_raw_pron" id="show_raw_pron" value="true" type="checkbox" checked="checked">
             <span class="checkmark"></span>
           </label>
-          <label for = "show_var_pron" class="container">Pronunciation
+          <label for="show_var_pron" class="checkbox-item">Pronunciation
             <input name="show_var_pron" id="show_var_pron" value="true" type="checkbox" checked="checked">
             <span class="checkmark"></span>
           </label>
-          <label for = "show_feet" class="container">Feet
+          <label for="show_feet" class="checkbox-item">Feet
             <input name="show_feet" id="show_feet" value="true" type="checkbox" checked="checked">
             <span class="checkmark"></span>
           </label>
-          <label for = "show_syllables" class="container">Syllables
+          <label for="show_syllables" class="checkbox-item">Syllables
             <input name="show_syllables" id="show_syllables" value="true" type="checkbox" checked="checked">
             <span class="checkmark"></span>
           </label>

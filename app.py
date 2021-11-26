@@ -7,8 +7,6 @@ import flask
 import wtforms  # type: ignore
 import yaml
 
-from flask import json, render_template,request
-
 import latin_scansion
 import pynini
 
