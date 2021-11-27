@@ -1,14 +1,8 @@
-<html>
+{% extends "base.html" %}
 
-<head>
-    <meta http-equivalent="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
-    <title>Latin scansion engine result</title>
-</head>
-
+{%block page1 %}
 <!-- 54 = 3 subsyllabic positions times up to 3 syllables per foot times 6 feet per verse -->
-<body>
-<table class="document">
+<table class="document" style="table-layout:fixed;width:100%;">
     {% for verse in document.verse %}
         {% if verse.defective %}
             <!-- TODO: make this a pale red background to symbolize defectivity. -->
@@ -74,7 +68,16 @@
     {% endfor %}
     </tr>
 </table>
-<p>({{ document.verse|length }} lines scanned.)</p>
-</body>
 
-</html>
+<p>({{ document.verse|length }} lines scanned.)</p>
+
+<a href="/" style="text-decoration: none;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" class="icon">
+        <polyline points="17 1 21 5 17 9"></polyline>
+        <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+        <polyline points="7 23 3 19 7 15"></polyline>
+        <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+  </svg>
+  <span class="icon-text" style="font-size: 20px">New Scan</span>
+</a>
+{% endblock %}

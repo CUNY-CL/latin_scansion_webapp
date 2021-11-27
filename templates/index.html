@@ -1,49 +1,43 @@
-<html>
+{% extends "base.html" %}
 
-<head>
-    <meta http-equivalent="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
-    <title>Latin scansion engine</title>
-</head>
+{% block page1 %}
+    <form id = "form" action="/result.html" method="post">
+      <div class="form-container">
+        <div class="textarea-group">
+            <label for="string"/>
+          <textarea placeholder="Type or paste" name="string">{{ config.example_text }}</textarea>
+        </div>
 
-<body>
-    <h1>Latin scansion engine</h1>
-    <form action="/result.html" method="post">
-        <!-- form itself -->
-        <p>
-            <label for="string" />
-            <textarea name="string" rows={{ config.rows }} cols={{ config.cols }}>{{ config.example_text }}</textarea>
-        </p>
-        <p><ul>
-                <li>
-                    <input name="show_text" id="show_text" value="true" type="checkbox" checked>
-                    <label for="show_text">Show original text?</label>
-                </li>
-                <li>
-                    <input name="show_norm" id="show_norm" value="true" type="checkbox">
-                    <label for="show_norm">Show normalized text?</label>
-                </li>
-                <li>
-                    <input name="show_raw_pron" id="show_raw_pron" value="true" type="checkbox">
-                    <label for="show_raw_pron">Show raw pronunciation?</label>
-                </li>
-                <li>
-                    <input name="show_var_pron" id="show_var_pron" value="true" type="checkbox" checked>
-                    <label for="show_var_pron">Show pronunciation?</label>
-                </li>
-                <li>
-                    <input name="show_feet" id="show_feet" value="true" type="checkbox" checked>
-                    <label for="option">Show feet?</label>
-                </li>
-                <li>
-                    <input name="show_syllables" id="show_syllables" value="true" type="checkbox" checked>
-                    <label for="show_syllables">Show syllables?</label>
-                </li> 
-            </ul>
-        </p>
-        <p><input type="submit" value="Scan"/></p>
+        <fieldset class="checkbox-group">
+          <legend>Display Options</legend>
+          <label for="show_text" class="checkbox-item">Original text
+            <input name="show_text" id="show_text" value="true" type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+          </label>
+          <label for="show_norm" class="checkbox-item">Normalized text
+            <input name="show_norm" id="show_norm" value="true" type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+          </label>
+          <label for="show_raw_pron" class="checkbox-item">Raw pronunciation
+            <input name="show_raw_pron" id="show_raw_pron" value="true" type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+          </label>
+          <label for="show_var_pron" class="checkbox-item">Pronunciation
+            <input name="show_var_pron" id="show_var_pron" value="true" type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+          </label>
+          <label for="show_feet" class="checkbox-item">Feet
+            <input name="show_feet" id="show_feet" value="true" type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+          </label>
+          <label for="show_syllables" class="checkbox-item">Syllables
+            <input name="show_syllables" id="show_syllables" value="true" type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+          </label>
+        </fieldset>
+
+      </div>
+      <div class="spacer"></div>
+      <button type="submit">Scan Lines</button>
     </form>
-    <p><a href={{ url_for('static', filename='input.html') }}>Input format</a> &bull; <a href={{ url_for('static', filename='about.html') }}>About</a></p>
-</body>
-
-</html>
+{% endblock %}
