@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 
 {%block page1 %}
-<!-- 54 = 3 subsyllabic positions times up to 3 syllables per foot times 6 feet per verse -->
 <table class="document" style="table-layout:fixed;width:100%;">
     {% for verse in document.verse %}
         {% if verse.defective %}
-            <!-- TODO: make this a pale red background to symbolize defectivity. -->
             {% if show_text %}
                 <tr><td colspan=54><b>{{ verse.text }}</b></td></tr>
             {% endif %}
@@ -15,10 +13,8 @@
             {% if show_raw_pron %}
                 <tr><td colspan=54>[{{ verse.raw_pron }}]</td></tr>
             {% endif %}
-            <!-- TODO: use color instead of this. -->
             <tr><td colspan=54>(defective)</td></tr>
         {% else %}
-            <!-- TODO: make this a pale blue or green background to symbolize success. -->
             {% if show_text %}
                 <tr><td colspan=54><b>{{ verse.text }}</b></td></tr>
             {% endif %}
@@ -56,7 +52,6 @@
                             <td>{{ syllable.nucleus }}</td>
                             <td>{{ syllable.coda }}</td>
                         {% endfor %}
-                        <!-- Since this logic is repeated from above perhaps this should be a template macro. -->
                         {% if foot.syllable|length == 2 %}
                             <td colspan=3>&nbsp;</td>
                         {% endif %}
