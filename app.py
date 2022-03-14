@@ -35,8 +35,6 @@ class ScansionForm(wtforms.Form):
         "string", [wtforms.validators.Length(min=1, max=32768)]
     )
     show_text = wtforms.BooleanField("show_text")
-    show_norm = wtforms.BooleanField("show_norm")
-    show_raw_pron = wtforms.BooleanField("show_raw_pron")
     show_var_pron = wtforms.BooleanField("show_var_pron")
     show_feet = wtforms.BooleanField("show_feet")
     show_syllables = wtforms.BooleanField("show_syllables")
@@ -79,8 +77,6 @@ def result() -> str:
             # TODO: Is there a way to make these auto-convert to bool
             # in the form specification?
             show_text=bool(form.show_text.data),
-            show_norm=bool(form.show_norm.data),
-            show_raw_pron=bool(form.show_raw_pron.data),
             show_var_pron=bool(form.show_var_pron.data),
             show_feet=bool(form.show_feet.data),
             show_syllables=bool(form.show_syllables.data),

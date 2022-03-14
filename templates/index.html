@@ -1,43 +1,27 @@
 {% extends "base.html" %}
 
 {% block page1 %}
-    <form id = "form" action="/result.html" method="post">
-      <div class="form-container">
-        <div class="textarea-group">
-            <label for="string"/>
-          <textarea placeholder="Type or paste" name="string">{{ config.example_text }}</textarea>
-        </div>
-
-        <fieldset class="checkbox-group">
-          <legend>Display Options</legend>
-          <label for="show_text" class="checkbox-item">Original text
-            <input name="show_text" id="show_text" value="true" type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label>
-          <label for="show_norm" class="checkbox-item">Normalized text
-            <input name="show_norm" id="show_norm" value="true" type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label>
-          <label for="show_raw_pron" class="checkbox-item">Raw pronunciation
-            <input name="show_raw_pron" id="show_raw_pron" value="true" type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label>
-          <label for="show_var_pron" class="checkbox-item">Pronunciation
-            <input name="show_var_pron" id="show_var_pron" value="true" type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label>
-          <label for="show_feet" class="checkbox-item">Feet
-            <input name="show_feet" id="show_feet" value="true" type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label>
-          <label for="show_syllables" class="checkbox-item">Syllables
-            <input name="show_syllables" id="show_syllables" value="true" type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-          </label>
-        </fieldset>
-
-      </div>
-      <div class="spacer"></div>
-      <button type="submit">Scan Lines</button>
-    </form>
+<form id="form" action="/result.html" method="post">
+	<div class="form-container">
+		<div class="textarea-group">
+			<label for="string" />
+			<textarea rows="8" placeholder="Type or paste" name="string">{{ config.example_text }}</textarea>
+		</div>
+		<div class="checkbox-group">
+			<fieldset class="checkbox-fieldset">
+				<legend>Display Options</legend>
+				<label for="show_text" class="checkbox-item">Original text
+					<input name="show_text" id="show_text" value="true" type="checkbox" checked="checked"> <span class="checkmark"></span> </label>
+				<label for="show_var_pron" class="checkbox-item">Pronunciation
+					<input name="show_var_pron" id="show_var_pron" value="true" type="checkbox" checked="checked"> <span class="checkmark"></span> </label>
+				<label for="show_feet" class="checkbox-item">Feet
+					<input name="show_feet" id="show_feet" value="true" type="checkbox" checked="checked"> <span class="checkmark"></span> </label>
+				<label for="show_syllables" class="checkbox-item">Syllables
+					<input name="show_syllables" id="show_syllables" value="true" type="checkbox" checked="checked"> <span class="checkmark"></span> </label>
+			</fieldset>
+		</div>
+	</div>
+	<div class="spacer"></div>
+	<button type="submit">Scan Lines</button>
+</form>
 {% endblock %}
