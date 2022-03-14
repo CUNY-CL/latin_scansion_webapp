@@ -8,11 +8,14 @@ body {
 	--black-color: #333333;
 	background-color: var(--blue-color);
 	outline: none;
-}
-
-* {
 	font-family: 'Jost', sans-serif;
 }
+
+.tt{
+	font-family: monospace;
+	color: black;
+}
+
 
 .spacer {
 	height: 15px;
@@ -34,6 +37,11 @@ p {
 
 .page a {
 	color: teal;
+	text-decoration: none;
+}
+
+.page a:hover {
+	text-decoration: underline;
 }
 
 .icon-text, .icon {
@@ -100,6 +108,7 @@ ul.tabs li.selected:hover {
 }
 
 .page li {
+	font-size: 16px;
 	text-align: left;
 }
 
@@ -146,6 +155,7 @@ form textarea {
 	min-height: 225px;
 	resize: none;
 	font-size: 16px;
+	font-family: inherit;
 }
 
 /** Checkbox **/
