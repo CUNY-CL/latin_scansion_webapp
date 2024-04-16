@@ -1,7 +1,7 @@
 -e git+https://github.com/CUNY-CL/latin_scansion.git#egg=latin-scansion
-Flask-WTF==0.15.1
-Flask==2.3.2
-PyYAML==6.0
-WTForms==2.3.3
-gunicorn==20.1.0
-pynini==2.1.5
+Flask-WTF==1.2.1
+Flask==3.0.3
+PyYAML==6.0.1
+WTForms==3.1.2
+gunicorn==21.2.0
+pynini==2.1.6
